@@ -1,0 +1,28 @@
+ The format of input file to test the algorithm could be as Excel (.xls) file.
+ The columns of a input xls file follows the below rules:
+ - at A1 will be wrote the name of the column as lable that shows the periods. At A2 to A N, will be wrote the number of each period as an index. 
+ - at B1 will be wrote the name of the column as lable that is here for  example "Pj"; At B2 to B N  it shows Pj in each period. Pj is the qouted price. As above, N is the number of periods. 
+ - at C1 it schoud be wrote another lable, for example "k units", that at its below column, at C2, will be wrote the number of desired units of some asset that we want to sell. By running the program these lables would be wrote.
+ - at D1, E1, F1 as lables we wrote for example "n periods", "m minimum", and "M Maximum" respectively. At D2, E2, F2 we wrote the total number of periods, the lower bound of all qouted prices, and the upper bound of all qouted prices respectively, too. Here also by running the program these values after inputting by user  would be wrote on excel cells.
+ 
+ After running the program, the results would be wrote on the same .xls file which was as an input. The resulted columns are:
+ - G1, "The Corresponding i", which means this column (G2-G N) holds the index of i for [p*i, p*i+1), to which pj - the qouted price at period j(j is not equal to n in this case) - belongs. G N means in the column G on row Nth, which N is the number of periods.
+ - H1 , "The Corresponding pi " which means this column (H2- H N) holds the pi of each i that is counted before and displayed on G2-G N. 
+ - I1 is labled "Max p j-1", and (I2-I N) hold max{p1, p2, . . . , p j-1} at each period Pj.
+ - J1 is labled "p*i > max [p1, ..., p j-1]. Yes or No", and the J2-J N contain the result of comparison of columns (H2-H N) and (I2-I N) row by row, as "Yes" or "No". Because at period one we do not have the result of max{p1, p2, . . . , p j-1}, at J2 it is shown by "always yes", and for the J N, because we do not care about the comparison of p*i and max [p1, ..., p j-1] at period N based on the algorithm definition, we present it at J N - cell of .xls file by "Don't Care".
+ - K1 is labled "Total Revenue", and K2 shows it.
+ 
+ These output columns will be displayed also on the output table, under "show results", in File Menu.
+ The "About" under Help menu contains informtion on the algorithm of the tool. 
+ After creating your own .xls file based on the above explanation and the sample, you run the program to compute the total revenue and other outputs.
+ 
+ After running the Jar file to input your data and see the result, these steps are assumed:
+ First, after clicking on "set inputs" under "file" menu, give your desired inputs through text fields, then click on the "set file and parameters" button, then appears another window that you should select the .xls file to openning, i.e., in 97-2003 format, then click on "okay" button.  Then by clicking on "show results" the result presented as table. By clicking on "Exit", the program ends. Then it is possible to see the results also in your input .xls File, which was input file, on the same sheet. 
+
+Example:
+Period Pj P j	k units  n periods	m minimum M Maximum	
+1	      3.45	 3	     5	        1	      10	
+2	      2.79					
+3	      1.14					
+4	      7.72					
+5	      5.01					

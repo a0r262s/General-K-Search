@@ -1,0 +1,40 @@
+ This mini tool was developed based on the algorithm mentioned in the paper "Online algorithms for the general k-search problem" by Wenming Zhang et al.
+
+ The paper investigates the general k-search problem, in which a player is to sell totally k units of some asset within n periods, aiming at maximizing the total revenue. At each period, the player observes a quoted price which expires before the next period, and decides irrecoverably the amount of the asset to be sold at the price. A deterministic online algorithm is presented and proved optimal for the case where k <= n - 1. For the other case where k >= n, it is shown by numerical illustration that the gap between the upper and the lower bound of competitive ratio is quite small for many situations.
+
+ The online time series search problem is introduced by El-Yaniv et al., in which a player is to sell one unit of some asset within several periods, aiming at the maximum selling revenue. At each period, the player observes a quoted price and decides immediately whether or not to accept the price, i.e., selling the unit of the asset at the price, without the knowledge of future prices. The game ends either one price is accepted or the last period is met.
+
+ In this paper, it is considered a general k-search problem such that the player may sell more than one unit of the asset at each period and also are considered both cases where k <= n -1 and where k >= n.
+
+ In this paper, it is proposed the general k-search problem, which generalizes the k-search problem by allowing to sell multiple units of the asset at each period and eliminating the assumption of k <= n. It is mainly presented an optimal deterministic algorithm (abbr. DET) for the case where k < n, and for the case where k >= n, it is shown by numerical computation that the gap between the upper and the lower bound is quite small for many situations.
+
+ The problem:
+ A player is to sell k (natural number which belongs to N) units of some asset in n periods, aiming to maximize the total revenue. At each period i = 1, 2, . . . ,n, the player observes a quoted price pi between [m,M] where n, m and M (0 < m < M) are known beforehand. The player needs to decide irrecoverably in period i the number of the asset to be sold at price pi without the knowledge of future prices, and all the k units of the asset shall be sold by period n.
+
+ The DET algorithm:
+ The main idea of algorithm DET is to predetermine k reservation prices and then the number of the asset to be sold at each period depends on the relationship between the quoted price and a matching reservation price.
+
+ The k reservation prices p*1, p*2, . . . , p*k as well as a(>= 1) are the solution of the following k+1 equations. For each formula on the left-hand side of each equation, the numerator denotes the upper bound of OPT's total revenue while the denominator denotes the lower bound of DET's for some quoted price input instance.
+
+(kp*1/km)= a,
+(kp*2/(p*1 + (k-1)m)) = a,
+(kp*3/(p*1 + p*2 + (k-2)m)) = a,
+.
+.
+.
+(kp*k/(p*1 + p*2 + p*k-1 + m)) = a,
+(kM/(p*1+ p*2 + ... + p*k)) = a.
+
+ By the first k equations, p*i = [(1 + a/k)i-1(a - 1) + 1]m for ( 1 =< i =< k). Substituting the above solution of p*i into the last equation, we have with algebraic calculation that(a -1)(1+a/k)^k -(M/m-1) = 0. Let F (a) = (a -1)(1+a/k)^k - (M/m - 1). It can be verified that F (1) < 0 and F (M/m) > 0. We claim that there exists an a  (1 < a, and a < M/m) such that F (a) = 0. Substituting the value of a into the solution of p*i , we determine the value of p*i which satisfies m < p*1 < p*2 < ... < p*k < M. For notational convenience, we virtually set p*0= 0 and p*k+1= M.
+
+ Algorithm DET:
+ At Period j (1 =< j =< n), a quoted price p j is observed. If j = n, sell all the remainder with price pn. Otherwise assume that p j belongs to [p*i , p*i+1) for some i where(0 =< i =<k). DET behaves in two cases according to the values of p1, p2, . . . , p j-1 and p*i.
+Case 1. p*i > max{p1, p2, . . . , p j-1}. Sell some units of the asset such that the accumulated sold amount is exactly i units.
+Case 2. p*i =< max{p1, p2, . . . , p j-1}. Sell none.
+
+ Let m = 1, M = 10, k = 3 and n = 5. We have by calculation that a = 2.478, p*1= 2.478, p*2= 3.699, p*3= 5.929. Wevirtually set p*0= 0 and p*4= 10. The quoted price instanceis given in the second row of the table, and the last row demonstrates the selling process for DET. At Period 1, p1 = 3.45 is in [p*1, p*2) and thus DET sells one unit of the asset with price p1. For Periods 2 and 3, DET sells none since Case 2 is met. At Period 4,since p3 belongs to [p*3, p*4)
+and DET has already sold one before,it sells the rest two units with price p3 at this period.The total revenue obtained by DET is equal to p1 + 2p3 =3.45+2 * 7.72 = 18.89.
+
+
+
+
